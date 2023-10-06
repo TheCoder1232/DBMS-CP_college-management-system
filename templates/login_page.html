@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLLEGE ERP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_page.css') }}">
+    
+</head>
+
+<body>
+    <div >
+        <img src="https://1000logos.net/wp-content/uploads/2017/02/Harvard-Logo-Meaning-history.jpg" alt="" id="img">
+    </div>
+
+    <div class="Login_info">
+        <div class="login_text">
+            <h1> 
+                SIGN IN
+            </h1>
+        </div>
+        <form action="/" method="POST">
+            <div id="login">
+                <input type="email" name="login_email" id="login_email" placeholder="email">
+                <input type="password" name="login_password" id="login_password" placeholder="password">
+                <!-- <a href="Profile.html"></a> -->
+                <button id="Login_button">LOGIN</button>
+            </form>
+            </div>
+            {% if not exist %}
+                <div class="user-error">
+                    <p>Either username or password is incorrect.</p>
+                </div>
+            {% endif %}
+        </div>
+</body>
+</html>

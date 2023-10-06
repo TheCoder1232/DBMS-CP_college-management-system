@@ -1,0 +1,32 @@
+#AttendanceDiv{
+    background-image: linear-gradient(180deg, #def2f1,#feffff);
+    display: flex;
+    justify-content:center ;
+    
+}
+
+.AttendanceCard{
+    background-color: #97D6D3;
+    height: 125px;
+    width: 350px;
+    margin-bottom: 30px;
+    margin-right: 50px;
+    margin-left: 5ch;
+
+}
+.AttendanceSubject{
+    font-size: 36px;
+    padding-left: 30px;
+    color: #17252A;
+    padding-top: 10px;
+}
+
+.AttendancePercent{
+    font-size: 36px;
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    font-weight: 100;
+}

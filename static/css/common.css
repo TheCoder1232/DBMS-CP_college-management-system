@@ -1,0 +1,65 @@
+.navBar{
+    display: flex;
+    background-color:#2b7a78 ;
+    width: 100%;
+    height: 30px;
+    justify-content: space-around;
+    margin-right: 100px;
+    
+}
+.navLink{
+    background-color: #2b7a78;
+    color: #feffff;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+.NavLink{
+    color: #feffff;
+    text-decoration: none;
+}
+body{
+    
+    margin: 0px;
+}
+
+#Img{
+    width: 99px;
+    height: 99px;
+    border-radius: 500%;
+    padding: 15px;
+}
+
+.MainBar{
+    display: flex;
+    background-color:#17252a ;
+    border: 0px;
+    padding: 0%;
+    width: 100%;
+    height: 125px;
+    
+}
+#CollegeName{
+    color: #feffff;
+    padding-left: 100px;
+    padding-top: 28px;
+    font-size: 35px;
+    
+}
+
+#UserGreeting{
+    padding-left: 600px;
+    padding-top: 70px;
+    font-size: 24px;
+    color: #feffff;
+    font-style: normal;
+}
+#CurrentPage{
+    background-color: #def2f1;
+    font-size: 50px;
+    color: #17252a;
+    font-weight: bolder;
+    padding-left: 70px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
