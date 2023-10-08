@@ -15,7 +15,12 @@ def homepage():
         cursor.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
         result = cursor.fetchone()
         if result is not None:
-            return render_template("Profile.html")
+            if result[2]=='A':
+                 return render_template("Profile.html")
+            elif result[2]=='T':
+                return render_template("login_page.html")
+            elif result[2]=='S':
+                return render_template("login_page.html")
         else:
             return render_template("login_page.html", exist=False)
     else:
