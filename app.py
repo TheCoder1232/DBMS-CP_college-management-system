@@ -26,6 +26,8 @@ def homepage():
     else:
         return render_template("login_page.html", exist=True)
     
+
+    
 @app.route("/StudentAttendancePage")
 def StudentAttendancePage():
     return render_template("StudentAttendancePage.html")
@@ -34,28 +36,6 @@ def StudentAttendancePage():
 def StudentHomePage():
     return render_template("StudentHomePage.html")
 
-
-# @app.route("/update/<int:sno>", methods=['GET', 'POST'])
-# def update(sno):
-#     if request.method=="POST":
-#         title = request.form["title"]
-#         desc = request.form["desc"]
-#         todo = Todo.query.filter_by(sno=sno).first()
-#         todo.title = title
-#         todo.desc = desc
-#         db.session.add(todo)
-#         db.session.commit()
-#         return redirect("/")
-    
-#     todo = Todo.query.filter_by(sno=sno).first()
-#     return render_template("update.html", todo=todo)
-
-# @app.route("/delete/<int:sno>")
-# def delete(sno):
-#     todo = Todo.query.filter_by(sno=sno).first()
-#     db.session.delete(todo)
-#     db.session.commit()
-#     return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
