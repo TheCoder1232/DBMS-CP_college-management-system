@@ -16,7 +16,7 @@ def homepage():
         result = cursor.fetchone()
         if result is not None:
             if result[2]=='A':
-                 return render_template("Profile.html")
+                 return render_template("HomePageAdmin.html")
             elif result[2]=='T':
                 return render_template("login_page.html")
             elif result[2]=='S':
