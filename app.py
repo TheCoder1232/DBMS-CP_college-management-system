@@ -16,23 +16,23 @@ def homepage():
         result = cursor.fetchone()
         if result is not None:
             if result[2]=='A':
-                 return render_template("HomePageAdmin.html")
+                 return render_template("AdminHomePage.html")
             elif result[2]=='T':
-                return render_template("login_page.html")
+                return render_template("TeacherHomePage.html")
             elif result[2]=='S':
-                return render_template("login_page.html")
+                return render_template("StudentHomePage.html")
         else:
             return render_template("login_page.html", exist=False)
     else:
         return render_template("login_page.html", exist=True)
     
-@app.route("/StudentAttendance")
-def StudentAttendance():
-    return render_template("StudentAttendance.html")
+@app.route("/StudentAttendancePage")
+def StudentAttendancePage():
+    return render_template("StudentAttendancePage.html")
 
-@app.route("/Profile")
-def Profile():
-    return render_template("Profile.html")
+@app.route("/StudentHomePage")
+def StudentHomePage():
+    return render_template("StudentHomePage.html")
 
 
 # @app.route("/update/<int:sno>", methods=['GET', 'POST'])
