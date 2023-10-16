@@ -1,0 +1,48 @@
+{% extends 'AdminBase.html' %}
+
+{% block BODY %}
+<div style="display: flex;">
+    <div class="AddDeleteButtons">
+        <a href="{{url_for('AdminAddStudent')}}">
+            <button class="button1" style="background: #2b7a78 ;">
+                <span class="label">ADD</span>
+              </button>
+         </a>
+        </div>
+    
+    <div class="AddDeleteButtons">
+        <a href="{{url_for('AdminDeleteStudent')}}">
+            <button class="button1">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">DELETE</span>
+              </button>
+        </a>
+    </div>
+</div>
+
+<div>
+    This is where we will put the form for Add Student
+    <form action="/" method="post">
+        NAME
+        <input type="text" placeholder="Student Name">
+        <br>
+        UNIQUE ID
+        <input type="text" placeholder="UNIQUE ID">
+        <br>
+        PHONE No.
+        <input type="text" placeholder=" Phone No.">
+        <br>
+        ROLL NO.
+        <input type="number" placeholder="Roll No.">
+        <br>
+        DATE OF BIRTH
+        <input type="date" placeholder="D.O.B. ">
+        <br>
+        ADDRESS
+        <input type="text" placeholder="Address">
+        <br>
+        <button type="submit">LOGIN</button>
+    </form>
+</div>
+{% endblock %}

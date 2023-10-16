@@ -36,6 +36,13 @@ def StudentAttendancePage():
 def StudentHomePage():
     return render_template("StudentHomePage.html")
 
+@app.route("/AdminAddStudent")
+def AdminAddStudent():
+    return render_template('AdminAddStudent.html')
+
+@app.route("/AdminDeleteStudent")
+def AdminDeleteStudent():
+    return render_template('AdminDeleteStudent.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
