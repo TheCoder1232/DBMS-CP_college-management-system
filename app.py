@@ -36,6 +36,10 @@ def StudentAttendancePage():
 def StudentHomePage():
     return render_template("StudentHomePage.html")
 
+@app.route("/AdminHomePage")
+def AdminHomePage():
+    return render_template("AdminHomePage.html")
+
 @app.route("/AdminAddStudent")
 def AdminAddStudent():
     return render_template('AdminAddStudent.html')
