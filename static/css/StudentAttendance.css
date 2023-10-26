@@ -1,8 +1,9 @@
 #AttendanceDiv{
-    background-image: linear-gradient(180deg, #def2f1,#feffff);
+    
     display: flex;
     justify-content:center ;
     margin-bottom: 20px;
+    
 }
 
 .AttendanceCard{

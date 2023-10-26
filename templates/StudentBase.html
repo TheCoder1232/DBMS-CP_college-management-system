@@ -15,7 +15,7 @@
     
     <div style="display: flex; ">
         
-        <div style="background-color: #2b7a78; height: 100vh; width: 20vw; ;">
+        <div class="sidenav">
             <div id="infobox">
                 <div id="UserImg">
                     <a href="{{ url_for('homepage' )}}">
@@ -47,7 +47,7 @@
                     
                     <li>
                         <a href="{{url_for('StudentHomePage')}}">
-                            <button class="button type1" id="button_addTeachers">
+                            <button class="button type1" id="button_StudentTimeTable">
                                 <span class="btn-txt">TIME TABLE</span>
                             </button>
                             </a>
@@ -71,7 +71,7 @@
                     </div>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHQG40TNORAVy5nbbRZ7w7qXq53OjL-SF2yulzCYBPa-MFAGTn6fXGe6huHZ_GoolR6UI&usqp=CAU" alt="">
                 </div>
-                <div style=" background-image: linear-gradient(180deg, #def2f1,#feffff); width: 100%; height: 50%;">
+                <div class="mainContent">
                     {% block BODY %}
                 
                  

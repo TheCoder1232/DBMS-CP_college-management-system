@@ -1,6 +1,14 @@
 {% extends 'AdminBase.html' %}
 
 {% block BODY %}
+<style>
+    #button_addStudents{
+        background-color: black ;
+        color: #fff;
+    
+    }
+  </style>
+
 <div style="display: flex;">
     <div class="AddDeleteButtons">
         <a href="{{url_for('AdminAddStudent')}}">

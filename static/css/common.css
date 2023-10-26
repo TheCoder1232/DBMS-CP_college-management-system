@@ -29,6 +29,8 @@ body{
     padding: 0%;
     width: 80vw;
     height: 125px;
+    margin-left: 20vw;
+    position: fixed;
     
 }
 #CollegeName{
@@ -36,6 +38,7 @@ body{
     padding-left: 50px;
     padding-top: 28px;
     font-size: 55px;
+   
     
 }
 
@@ -118,4 +121,24 @@ ul{
     display: flex;
     background-color: #2b7a78;
     
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 20vw;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2b7a78;
+    overflow-x: hidden;
+    
+  }
+
+  .mainContent{
+    background-image: linear-gradient(180deg, #def2f1,#feffff); 
+    width: 80vw;
+     height: 50%;
+     margin-left: 20vw;
+     margin-top: 125px;
   }

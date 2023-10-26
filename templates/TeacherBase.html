@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminStudent.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/StudentAttendance.css') }}">
 
 
-    <title>HomePageAdmin</title>
+
+    <title>TeacherBase</title>
 </head>
 <body>
     
@@ -22,44 +24,47 @@
                    </a> 
                 </div>
                 <div id="UserGreeting">
-                    Hello ADMIN!
+                    Hello TEACHER!
                 </div>
 
             </div>
             <div id="line"></div>
             <ul>
                 <li>
-                    <a href="{{ url_for('AdminHomePage') }}">
-                        <button class="button type1" id="button_profile">
+                    <a href="{{ url_for('TeacherHomePage') }}">
+                        <button class="button type1" id="button_TeacherProfile">
                             <span class="btn-txt">PROFILE</span>
                         </button>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url_for('AdminAddStudent')}}">
-                        <button class="button type1" id="button_addStudents">
-                            <span class="btn-txt">ADD STUDENTS</span>
+                    <a href="{{url_for('TeacherHomePage')}}">
+                        <button class="button type1" id="button_TeacherAttendance">
+                            <span class="btn-txt">ATTENDANCE</span>
                         </button>
                     </a>
                     </li>
                     
                     <li>
-                        <a href="{{url_for('AdminAddTeacher')}}">
+                        <a href="{{url_for('TeacherHomePage')}}">
                             <button class="button type1" id="button_addTeachers">
-                                <span class="btn-txt">ADD TEACHERS</span>
+                                <span class="btn-txt">TIME TABLE</span>
                             </button>
                             </a>
                       
                     </li>
                     <li>
-                    <button class="button type1" id="button_subject">
-                        <span class="btn-txt">SUBJECTS</span>
-                      </button>
+                        <a href="{{url_for('TeacherHomePage')}}">
+
+                            <button class="button type1" id="button_subject">
+                                <span class="btn-txt">RESULT</span>
+                            </button>
+                        </a>
                       
                     </li>
                 </ul>
             </div>
-            <div >
+            <div>
                 <div class="MainBar" style="display: flex; justify-content: space-between;">
                     <div id="CollegeName">
                         Vishwakarma Institute of Technology
@@ -73,6 +78,6 @@
                     {% endblock %}
                 </div>
             </div>
-        </div>
+            </div>
 </body>
 </html>

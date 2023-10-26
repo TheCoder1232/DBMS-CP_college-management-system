@@ -7,6 +7,7 @@ conn = sqlite3.connect('./instance/ERP-.db', check_same_thread=False)
 cursor = conn.cursor()
 app.app_context().push()
 
+#Login Function
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
     if request.method=="POST":
@@ -27,41 +28,73 @@ def homepage():
         return render_template("login_page.html", exist=True)
     
 
-    
-@app.route("/StudentAttendancePage")
-def StudentAttendancePage():
-    return render_template("StudentAttendancePage.html")
-
-@app.route("/StudentHomePage")
-def StudentHomePage():
-    return render_template("StudentHomePage.html")
-
-
 #Admin Functions
 @app.route("/AdminHomePage")
 def AdminHomePage():
     return render_template("AdminHomePage.html")
 
 
-@app.route("/AdminAddStudent")
+@app.route("/AdminAddStudent", methods=['GET', 'POST'])
 def AdminAddStudent():
-    return render_template('AdminAddStudent.html')
+    if request.method=="POST":
+        StudentName=request.form["StudentName"]
+        PNo=request.form["PNo"]
+        Addr=request.form["Addr"]
+        UID=request.form["UID"]
+        RNo=request.form["RNo"]
+        DOB=request.form["DOB"]
+        Email=request.form["Email"]
+        Password=request.form["Password"]
+       
+        return render_template('AdminAddStudent.html' ,success=True)
+    else:
+        return render_template('AdminAddStudent.html')
 
 @app.route("/AdminDeleteStudent")
 def AdminDeleteStudent():
-    return render_template('AdminDeleteStudent.html')
+    if request.method=="GET":
+        
 
+        print("done")
+        return render_template('AdminDeleteStudent.html')
+    else:
+        return render_template('AdminDeleteStudent.html')
 
-@app.route("/AdminAddTeacher")
+@app.route("/AdminAddTeacher", methods=['POST','GET'])
 def AdminAddTeacher():
-    return render_template('AdminAddTeacher.html')
+    if request.method=="POST":
+        TeacherNamee=request.form["TeacherName"]
+        PNo=request.form["PNo"]
+        Addr=request.form["Addr"]
+        UID=request.form["UID"]
+        EXP=request.form["EXP"]
+        DOB=request.form["DOB"]
+        Email=request.form["Email"]
+        Password=request.form["Password"]
+        print('done')
+        return render_template('AdminAddTeacher.html' ,success=True)
+    else:
+        return render_template('AdminAddTeacher.html')
 
 @app.route("/AdminDeleteTeacher")
 def AdminDeleteTeacher():
     return render_template('AdminDeleteTeacher.html')
 
 
+#Teacher Functions 
+@app.route("/TeacherHomePage")
+def TeacherHomePage():
+    return render_template('TeacherHomePage.html')
 
+
+#Student Functions
+@app.route("/StudentHomePage")
+def StudentHomePage():
+    return render_template("StudentHomePage.html")
+
+@app.route("/StudentAttendancePage")
+def StudentAttendancePage():
+    return render_template("StudentAttendancePage.html")
 
 
 if __name__ == "__main__":
