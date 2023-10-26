@@ -1,0 +1,35 @@
+{% extends 'AdminBase.html' %}
+
+{% block BODY %}
+<style>
+    #button_addTeachers{
+        background-color: black ;
+        color: #fff;
+    
+    }
+</style>
+<div style="display: flex;">
+    <div class="AddDeleteButtons">
+        <a href="{{url_for('AdminAddTeacher')}}">
+            <button class="button1">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">ADD</span>
+              </button>
+         </a>
+        </div>
+    
+    <div class="AddDeleteButtons">
+        <a href="{{url_for('AdminDeleteTeacher')}}">
+            <button class="button1" style="background: #2b7a78 ;">
+                <span class="label">DELETE</span>
+              </button>
+        </a>
+    </div>
+
+</div>
+
+<div>
+    This is where we will put the form for Delete Teacher
+</div>
+{% endblock %}

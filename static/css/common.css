@@ -102,7 +102,7 @@ ul{
   }
   
   .button:hover {
-    box-shadow: 1px 1px 200px #252525;
+    box-shadow: 1px 1px 100px #252525;
     color: #fff;
     border: none;
     background-color: #252525;

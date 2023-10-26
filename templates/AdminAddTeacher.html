@@ -13,17 +13,16 @@
   }
 </script> -->
 <style>
-  #button_addStudents{
-      background-color: black ;
-      color: #fff;
-  
-  }
+    #button_addTeachers{
+        background-color: black ;
+        color: #fff;
+    
+    }
 </style>
-
 
 <div style="display: flex; ">
   <div class="AddDeleteButtons">
-    <a href="{{url_for('AdminAddStudent')}}">
+    <a href="{{url_for('AdminAddTeacher')}}">
       <button class="button1" style="background: #2b7a78 ;">
         <span class="label">ADD</span>
       </button>
@@ -31,7 +30,7 @@
   </div>
 
   <div class="AddDeleteButtons">
-    <a href="{{url_for('AdminDeleteStudent')}}">
+    <a href="{{url_for('AdminDeleteTeacher')}}">
       <button class="button1">
         <span class="transition"></span>
         <span class="gradient"></span>
@@ -51,7 +50,7 @@
         <div class="StudentUpdate">
           NAME
           <div>
-            <input type="text" name="StudentName" placeholder="Student Name" class="input1">
+            <input type="text" name="TeacherName" placeholder="Teacher Name" class="input1">
           </div>
         </div>
         
@@ -81,9 +80,9 @@
         </div>
 
         <div class="StudentUpdate">
-          ROLL NO.
+          YEARS OF EXPERIENCE
           <div>
-            <input type="number" name="RNo" placeholder="Roll No." class="input1">
+            <input type="number" name="EXP" placeholder="EXPERIENCE" class="input1">
           </div>
         </div>
         <div class="StudentUpdate">
