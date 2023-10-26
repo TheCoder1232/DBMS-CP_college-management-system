@@ -31,6 +31,7 @@ body{
     height: 125px;
     margin-left: 20vw;
     position: fixed;
+    z-index: 1;
     
 }
 #CollegeName{
@@ -142,3 +143,34 @@ ul{
      margin-left: 20vw;
      margin-top: 125px;
   }
+
+ 
+
+.alertMessage {
+    padding: 20px;
+    width: 50%;
+    height: 20%;
+    font-size: 50px;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #2b7a78;
+    box-shadow: rgb(0 0 0 / 25%) 0px 5px 10px 2px;
+    top: 40%;
+    left: 25%;
+    z-index: 1;
+    position: fixed;
+    color: #def2f1;
+    text-align: center;
+    line-height: 300%;
+
+}
+
+.closeBtn {
+    float: right;
+    margin-left: 18px;
+    font-size: 30px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+

@@ -120,4 +120,10 @@
     </div>
     </form>
   </div>
+  {% if success %}
+  <div class="alertMessage">
+    <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
+    <strong>STUDENT ADDED</strong> 
+</div>
+{%endif%}
 {% endblock %}

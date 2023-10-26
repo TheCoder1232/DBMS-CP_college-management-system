@@ -70,6 +70,13 @@
             <input type="text" name="Addr" placeholder="Address" class="input1" >
           </div>
         </div>
+
+        <div class="StudentUpdate">
+          DATE OF BIRTH
+          <div>
+            <input type="date" name="DOB" placeholder="D.O.B. " class="input1">  
+          </div>
+        </div>
       </div>
       
       <div style="display: block;">
@@ -87,10 +94,11 @@
             <input type="number" name="EXP" placeholder="EXPERIENCE" class="input1">
           </div>
         </div>
+        
         <div class="StudentUpdate">
-          DATE OF BIRTH
+          SUBJECT
           <div>
-            <input type="date" name="DOB" placeholder="D.O.B. " class="input1">  
+            <input type="text" name="SUBJ" placeholder="SUBJECT" class="input1">
           </div>
         </div>
       </div>
@@ -118,4 +126,10 @@
     </div>
     </form>
   </div>
+  {% if success %}
+  <div class="alertMessage">
+    <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
+    <strong>TEACHER ADDED</strong> 
+</div>
+{%endif%}
 {% endblock %}

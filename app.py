@@ -69,6 +69,7 @@ def AdminAddTeacher():
         UID=request.form["UID"]
         EXP=request.form["EXP"]
         DOB=request.form["DOB"]
+        SUBJ=request.form["SUBJ"]
         Email=request.form["Email"]
         Password=request.form["Password"]
         print('done')
