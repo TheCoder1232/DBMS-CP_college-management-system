@@ -25,22 +25,38 @@
     This is where we will put the form for Add Student
     <form action="/" method="post">
         NAME
-        <input type="text" placeholder="Student Name">
+        <input type="text"  name="StudentName" placeholder="Student Name">
         <br>
         UNIQUE ID
-        <input type="text" placeholder="UNIQUE ID">
+        <input type="text" name="UID" placeholder="UNIQUE ID">
         <br>
         PHONE No.
-        <input type="text" placeholder=" Phone No.">
+        <input type="text" name="PNo" placeholder=" Phone No.">
         <br>
         ROLL NO.
-        <input type="number" placeholder="Roll No.">
+        <input type="number" name="RNo" placeholder="Roll No.">
         <br>
         DATE OF BIRTH
-        <input type="date" placeholder="D.O.B. ">
+        <input type="date" name="DOB" placeholder="D.O.B. ">
         <br>
         ADDRESS
-        <input type="text" placeholder="Address">
+        <input type="text" name="Addr" placeholder="Address">
+        <br>
+        EMAIL ID
+        <input type="email" name="Email" placeholder="email">
+        <br>
+        PASSWORD <input type="password" name="password" placeholder="password" value="" id="myInput">
+        <input type="checkbox" onclick="myFunction()">Show Password
+        <script>
+            function myFunction() {
+              var x = document.getElementById("myInput");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+            </script>
         <br>
         <button type="submit">LOGIN</button>
     </form>
