@@ -45,6 +45,7 @@ def AdminAddStudent():
         DOB=request.form["DOB"]
         Email=request.form["Email"]
         Password=request.form["Password"]
+        
        
         return render_template('AdminAddStudent.html' ,success=True)
     else:
