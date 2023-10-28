@@ -33,6 +33,40 @@
 </div>
 
 <div>
-    This is where we will put the form for Delete Student
+    <div style="display: flex; padding-left: 1%;">
+        <form action="/AdminDeleteStudent" method="post">
+            <div style="padding-bottom:1% ;">
+                UNIQUE ID
+                 <div>
+                     <input type="text" placeholder="UNIQUE ID" name="UID1" class="input1" >
+                     <button type="submit" class="button-8">submit</button>
+
+                    </div>
+                </div>
+        </form>
+        <form action="/AdminDeleteStudent" method="get">
+            <button type="submit" style=" margin-left: 10%; margin-top:40%;" class="button-8">clear</button>
+        </form>
+
+    </div>
+    {% if exists=='nothing' %}
+    <div>
+       
+    </div>
+
+    {%elif exists%}
+    <div>
+          found
+    </div>
+    {%else%}
+    <div>
+        <div class="alertMessage">
+            <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
+            <strong>STUDENT NOT FOUND</strong> 
+        </div>
+    </div>
+    {%endif%}
+
+
 </div>
 {% endblock %}

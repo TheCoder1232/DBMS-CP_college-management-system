@@ -45,21 +45,28 @@ def AdminAddStudent():
         DOB=request.form["DOB"]
         Email=request.form["Email"]
         Password=request.form["Password"]
-        
+
        
         return render_template('AdminAddStudent.html' ,success=True)
     else:
         return render_template('AdminAddStudent.html')
 
-@app.route("/AdminDeleteStudent")
+@app.route("/AdminDeleteStudent" ,methods=['POST','GET'])
 def AdminDeleteStudent():
-    if request.method=="GET":
+    if request.method=="POST":
+        uid=request.form["UID1"]
+        print(uid)
+        if uid=='1':
+            return render_template('AdminDeleteStudent.html', exists=True)
+        else:
+            return render_template('AdminDeleteStudent.html', exists=False)
+    elif request.method=='GET':
+        return render_template('AdminDeleteStudent.html', exists='nothing')
+    else:
+        return render_template('AdminDeleteStudent.html',exists='nothing')
         
 
-        print("done")
-        return render_template('AdminDeleteStudent.html')
-    else:
-        return render_template('AdminDeleteStudent.html')
+       
 
 @app.route("/AdminAddTeacher", methods=['POST','GET'])
 def AdminAddTeacher():
@@ -78,9 +85,20 @@ def AdminAddTeacher():
     else:
         return render_template('AdminAddTeacher.html')
 
-@app.route("/AdminDeleteTeacher")
+@app.route("/AdminDeleteTeacher" ,methods=['POST','GET'])
 def AdminDeleteTeacher():
-    return render_template('AdminDeleteTeacher.html')
+    if request.method=="POST":
+        uid=request.form["UID1"]
+        print(uid)
+        if uid=='1':
+            
+            return render_template('AdminDeleteTeacher.html', exists=True)
+        else:
+            return render_template('AdminDeleteTeacher.html', exists=False)
+    elif request.method=='GET':
+        return render_template('AdminDeleteTeacher.html', exists='nothing')
+    else:
+        return render_template('AdminDeleteTeacher.html',exists='nothing')
 
 
 #Teacher Functions 
