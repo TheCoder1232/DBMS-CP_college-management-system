@@ -1,71 +1,85 @@
-{% extends 'AdminBase.html' %}
-
-{% block title %}AdminDeleteTeacher{% endblock %}
-
+{% extends 'AdminBase.html' %} {% block title %}AdminDeleteTeacher{% endblock %}
 {% block BODY %}
 <style>
-    #button_addTeachers{
-        background-color: black ;
+    #button_addTeachers {
+        background-color: black;
         color: #fff;
-    
     }
 </style>
-<div style="display: flex;">
+<div style="display: flex">
     <div class="AddDeleteButtons">
         <a href="{{url_for('AdminAddTeacher')}}">
             <button class="button1">
                 <span class="transition"></span>
                 <span class="gradient"></span>
                 <span class="label">ADD</span>
-              </button>
-         </a>
-        </div>
-    
-    <div class="AddDeleteButtons">
-        <a href="{{url_for('AdminDeleteTeacher')}}">
-            <button class="button1" style="background: #2b7a78 ;">
-                <span class="label">DELETE</span>
-              </button>
+            </button>
         </a>
     </div>
 
+    <div class="AddDeleteButtons">
+        <a href="{{url_for('AdminDeleteTeacher')}}">
+            <button class="button1" style="background: #2b7a78">
+                <span class="label">DELETE</span>
+            </button>
+        </a>
+    </div>
 </div>
 
 <div>
-    
-    <div style="display: flex; padding-left: 1%;">
+    <div style="display: flex; padding-left: 1%">
         <form action="/AdminDeleteTeacher" method="post">
-            <div style="padding-bottom:1% ;">
+            <div style="padding-bottom: 1%">
                 UNIQUE ID
-                 <div>
-                     <input type="text" placeholder="UNIQUE ID" name="UID1" class="input1" >
-                     <button type="submit" class="button-8">submit</button>
-
-                    </div>
+                <div>
+                    <input type="text" placeholder="UNIQUE ID" name="UID1" class="input1" />
+                    <button type="submit" class="button-8" name="DeleteForm" value="Search">submit</button>
                 </div>
+            </div>
         </form>
         <form action="/AdminDeleteTeacher" method="get">
-            <button type="submit" style=" margin-left: 10%; margin-top:40%;" class="button-8">clear</button>
+            <button type="submit" style="margin-left: 10%; margin-top: 40%" class="button-8" >
+                clear
+            </button>
         </form>
-
     </div>
     {% if exists=='nothing' %}
     <div>
-       
+
     </div>
 
     {%elif exists%}
     <div>
-          found
+        <div>
+            <div class="StudentUpdate">NAME:</div>
+            <div class="StudentUpdate">PHONE NUMBER:</div>
+            <div class="StudentUpdate">YEARS OF EXPERIENCE:</div>
+            <div class="StudentUpdate">ADDRESS:</div>
+            <div class="StudentUpdate">EMAIL ID:</div>
+            <div class="StudentUpdate">UID:</div>
+            <div class="StudentUpdate">PASSWORD:</div>
+    
+            <form action="/AdminDeleteTeacher" method="post" class="StudentUpdate">
+                <button type="submit" name="DeleteForm" value="Confirm" class="button-8 " style="font-size: 17px;padding: 1em 2.5em;">CONFIRM DELETE</button>
+            </form>
+            
+            {%if exists=='deleted'%}
+            <div>
+                <div class="alertMessage">
+                    <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
+                    <strong>TEACHER DELETED</strong>
+                </div>
+            </div>
+            {%endif%}
+        </div>
     </div>
     {%else%}
     <div>
         <div class="alertMessage">
             <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
-            <strong>TEACHER NOT FOUND</strong> 
+            <strong>TEACHER NOT FOUND</strong>
         </div>
     </div>
     {%endif%}
-
 </div>
 {% endblock %}

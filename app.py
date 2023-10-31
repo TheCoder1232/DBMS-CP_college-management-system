@@ -54,16 +54,23 @@ def AdminAddStudent():
 @app.route("/AdminDeleteStudent" ,methods=['POST','GET'])
 def AdminDeleteStudent():
     if request.method=="POST":
-        uid=request.form["UID1"]
-        print(uid)
-        if uid=='1':
-            return render_template('AdminDeleteStudent.html', exists=True)
-        else:
-            return render_template('AdminDeleteStudent.html', exists=False)
+        DeleteForm=request.form.get('DeleteForm')
+        if DeleteForm=='Search':
+            uid=request.form["UID1"]
+            if uid=='1':
+                #write query to get student values
+                return render_template('AdminDeleteStudent.html', exists=True)
+            else:
+                return render_template('AdminDeleteStudent.html', exists=False)
+        if DeleteForm=='Confirm':
+            #write query to delete student values
+            return render_template('AdminDeleteStudent.html',  exists='deleted')
     elif request.method=='GET':
         return render_template('AdminDeleteStudent.html', exists='nothing')
     else:
         return render_template('AdminDeleteStudent.html',exists='nothing')
+    
+
         
 
        
@@ -88,13 +95,17 @@ def AdminAddTeacher():
 @app.route("/AdminDeleteTeacher" ,methods=['POST','GET'])
 def AdminDeleteTeacher():
     if request.method=="POST":
-        uid=request.form["UID1"]
-        print(uid)
-        if uid=='1':
-            
-            return render_template('AdminDeleteTeacher.html', exists=True)
-        else:
-            return render_template('AdminDeleteTeacher.html', exists=False)
+        DeleteForm=request.form.get('DeleteForm')
+        if DeleteForm=='Search':
+            uid=request.form["UID1"]
+            if uid=='1':
+                #write query to get student values
+                return render_template('AdminDeleteTeacher.html', exists=True)
+            else:
+                return render_template('AdminDeleteTeacher.html', exists=False)
+        if DeleteForm=='Confirm':
+            #write query to delete student values
+            return render_template('AdminDeleteTeacher.html',  exists='deleted')
     elif request.method=='GET':
         return render_template('AdminDeleteTeacher.html', exists='nothing')
     else:

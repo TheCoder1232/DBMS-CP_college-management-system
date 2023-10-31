@@ -139,7 +139,7 @@ ul{
   .mainContent{
     background-image: linear-gradient(180deg, #def2f1,#feffff); 
     width: 80vw;
-     height: 50%;
+     height: 50vh;
      margin-left: 20vw;
      margin-top: 125px;
   }
