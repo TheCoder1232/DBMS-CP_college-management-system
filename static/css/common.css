@@ -203,3 +203,23 @@ ul{
 }
 
 
+.homepage{
+  display: flex;
+  justify-content: space-between;
+  
+  
+}
+
+.homepageinfo{
+  margin-left: 2vw;
+  /* margin-top: 5vh; */
+  padding-top: 7vh;
+  font-size: 25px;
+  font-weight: bolder;
+  font-family: 'Times New Roman', Times, serif;
+  overflow:visible;
+  width: 40vw;
+}
+.homepagevalue{
+  font-weight: lighter;
+}
