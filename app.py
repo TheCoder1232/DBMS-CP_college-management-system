@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import sqlite3
 
 
@@ -7,6 +7,7 @@ conn = sqlite3.connect('./instance/ERP.db', check_same_thread=False)
 cursor = conn.cursor()
 app.app_context().push()
 
+app.secret_key = 'DBMS'
 #Login Function
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
@@ -67,11 +68,15 @@ def AdminAddStudent():
         return render_template('AdminAddStudent.html')
 
 @app.route("/AdminDeleteStudent" ,methods=['POST','GET'])
+
 def AdminDeleteStudent():
+   
     if request.method=="POST":
+
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
+            session['uid'] = uid 
             cursor.execute('select * from STUDENT where studentID=?',(uid,))
             result=cursor.fetchone()
             if result is not None:
@@ -79,9 +84,15 @@ def AdminDeleteStudent():
             else:
                 return render_template('AdminDeleteStudent.html', exists=False)
         if DeleteForm=='Confirm':
-            cursor.execute('delete from STUDENT where studentID=?',(uid,))
-            conn.commit()
-            return render_template('AdminDeleteStudent.html',  exists='deleted')
+            uid = session.get('uid')
+            if uid is not None:
+                cursor.execute('delete from STUDENT where studentID=?',(uid,))
+                conn.commit()
+                print(uid)
+                print("yes")
+                return render_template('AdminDeleteStudent.html',result='NULL', exists='deleted')
+            else:
+                print('bruh')
     elif request.method=='GET':
         return render_template('AdminDeleteStudent.html', exists='nothing')
     else:
