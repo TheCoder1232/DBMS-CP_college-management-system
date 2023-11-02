@@ -125,5 +125,12 @@
     <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
     <strong>STUDENT ADDED</strong> 
 </div>
+{%elif success==False%}
+<div class="alertMessage">
+  <span class="closeBtn" onclick="this.parentElement.style.display='none';">×</span>
+  <strong>STUDENT NOT ADDED</strong> 
+</div>
+{%else%}
+<div></div>
 {%endif%}
 {% endblock %}

@@ -45,9 +45,17 @@ def AdminAddStudent():
         DOB=request.form["DOB"]
         Email=request.form["Email"]
         Password=request.form["Password"]
-
-       
-        return render_template('AdminAddStudent.html' ,success=True)
+        try:
+            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address)
+               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)'''
+        # Execute the query using the cursor and pass the values as a tuple
+            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr))
+            conn.commit()
+            print('success')
+            return render_template('AdminAddStudent.html' ,success=True)
+        except:
+            print('bruh')
+            return render_template('AdminAddStudent.html' ,success=False)
     else:
         return render_template('AdminAddStudent.html')
 
@@ -57,6 +65,7 @@ def AdminDeleteStudent():
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
+            
             if uid=='1':
                 #write query to get student values
                 return render_template('AdminDeleteStudent.html', exists=True)
@@ -78,7 +87,7 @@ def AdminDeleteStudent():
 @app.route("/AdminAddTeacher", methods=['POST','GET'])
 def AdminAddTeacher():
     if request.method=="POST":
-        TeacherNamee=request.form["TeacherName"]
+        TeacherName=request.form["TeacherName"]
         PNo=request.form["PNo"]
         Addr=request.form["Addr"]
         UID=request.form["UID"]
@@ -88,7 +97,17 @@ def AdminAddTeacher():
         Email=request.form["Email"]
         Password=request.form["Password"]
         print('done')
-        return render_template('AdminAddTeacher.html' ,success=True)
+        try:
+            insert_query = '''INSERT INTO TEACHER (teacherID, adminID, studentID, attendanceID, timetableID, subCode, email, password, name, dob, address, yearsExp)
+               VALUES(?, ?, NULL, ?, ?, ?, ?, ?,?,?,?,?)'''
+        # Execute the query using the cursor and pass the values as a tuple
+            cursor.execute(insert_query, (UID,'ADMIN',  'attendanceID', 'timetableID', SUBJ, Email,Password, TeacherName, DOB, Addr,EXP))
+            conn.commit()
+            print('success')
+            return render_template('AdminAddTeacher.html' ,success=True)
+        except:
+            print('bruh')
+            return render_template('AdminAddTeacher.html' ,success=False)
     else:
         return render_template('AdminAddTeacher.html')
 
@@ -98,6 +117,7 @@ def AdminDeleteTeacher():
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
+
             if uid=='1':
                 #write query to get student values
                 return render_template('AdminDeleteTeacher.html', exists=True)
