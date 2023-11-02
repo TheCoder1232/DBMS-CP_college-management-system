@@ -39,6 +39,7 @@ def homepage():
 #Admin Functions
 @app.route("/AdminHomePage")
 def AdminHomePage():
+
     return render_template("AdminHomePage.html")
 
 
@@ -135,15 +136,23 @@ def AdminDeleteTeacher():
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
-
-            if uid=='1':
-                #write query to get student values
-                return render_template('AdminDeleteTeacher.html', exists=True)
+            session['uid'] = uid 
+            cursor.execute('select * from TEACHER where teacherID=?',(uid,))
+            result=cursor.fetchone()
+            if result is not None:
+                return render_template('AdminDeleteTeacher.html', result=result,exists=True)
             else:
                 return render_template('AdminDeleteTeacher.html', exists=False)
         if DeleteForm=='Confirm':
-            #write query to delete student values
-            return render_template('AdminDeleteTeacher.html',  exists='deleted')
+            uid = session.get('uid')
+            if uid is not None:
+                cursor.execute('delete from TEACHER where teacherID=?',(uid,))
+                conn.commit()
+                print(uid)
+                print("yes")
+                return render_template('AdminDeleteTeacher.html',result='NULL', exists='deleted')
+            else:
+                print('bruh')
     elif request.method=='GET':
         return render_template('AdminDeleteTeacher.html', exists='nothing')
     else:
