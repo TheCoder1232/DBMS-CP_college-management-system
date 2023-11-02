@@ -55,6 +55,14 @@
 
   .StudentUpdate{
     padding: 10px;
+    margin-top: 0.5%;
+    font-weight: bolder;
+    font-size: 22px;
+  }
+  .StudentUpdateValue{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: lighter;
   }
 
 

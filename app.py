@@ -3,7 +3,7 @@ import sqlite3
 
 
 app = Flask(__name__)
-conn = sqlite3.connect('./instance/ERP-.db', check_same_thread=False)
+conn = sqlite3.connect('./instance/ERP.db', check_same_thread=False)
 cursor = conn.cursor()
 app.app_context().push()
 
@@ -13,15 +13,22 @@ def homepage():
     if request.method=="POST":
         email = request.form["login_email"]
         password = request.form["login_password"]
-        cursor.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
+
+        cursor.execute("SELECT * FROM ADMIN WHERE email=? AND password=?", (email, password))
         result = cursor.fetchone()
         if result is not None:
-            if result[2]=='A':
-                 return render_template("AdminHomePage.html")
-            elif result[2]=='T':
-                return render_template("TeacherHomePage.html")
-            elif result[2]=='S':
-                return render_template("StudentHomePage.html")
+            return render_template("AdminHomePage.html")
+        
+        cursor.execute("SELECT * FROM STUDENT WHERE email=? AND password=?", (email, password))
+        result = cursor.fetchone()
+        if result is not None:
+            return render_template("StudentHomePage.html")
+        
+        cursor.execute("SELECT * FROM TEACHER WHERE email=? AND password=?", (email, password))
+        result = cursor.fetchone()
+        if result is not None:
+            return render_template("TeacherHomePage.html")
+    
         else:
             return render_template("login_page.html", exist=False)
     else:
@@ -46,10 +53,10 @@ def AdminAddStudent():
         Email=request.form["Email"]
         Password=request.form["Password"]
         try:
-            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address)
-               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?)'''
+            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address,phone)
+               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)'''
         # Execute the query using the cursor and pass the values as a tuple
-            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr))
+            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo))
             conn.commit()
             print('success')
             return render_template('AdminAddStudent.html' ,success=True)
@@ -65,20 +72,20 @@ def AdminDeleteStudent():
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
-            
-            if uid=='1':
-                #write query to get student values
-                return render_template('AdminDeleteStudent.html', exists=True)
+            cursor.execute('select * from STUDENT where studentID=?',(uid,))
+            result=cursor.fetchone()
+            if result is not None:
+                return render_template('AdminDeleteStudent.html', result=result,exists=True)
             else:
                 return render_template('AdminDeleteStudent.html', exists=False)
         if DeleteForm=='Confirm':
-            #write query to delete student values
+            cursor.execute('delete from STUDENT where studentID=?',(uid,))
+            conn.commit()
             return render_template('AdminDeleteStudent.html',  exists='deleted')
     elif request.method=='GET':
         return render_template('AdminDeleteStudent.html', exists='nothing')
     else:
         return render_template('AdminDeleteStudent.html',exists='nothing')
-    
 
         
 
@@ -98,10 +105,10 @@ def AdminAddTeacher():
         Password=request.form["Password"]
         print('done')
         try:
-            insert_query = '''INSERT INTO TEACHER (teacherID, adminID, studentID, attendanceID, timetableID, subCode, email, password, name, dob, address, yearsExp)
-               VALUES(?, ?, NULL, ?, ?, ?, ?, ?,?,?,?,?)'''
+            insert_query = '''INSERT INTO TEACHER (teacherID, adminID, studentID, attendanceID, timetableID, subCode, email, password, name, dob, address, phone, yearsExp)
+               VALUES(?, ?, NULL, ?, ?, ?, ?, ?,?,?,?,?,?)'''
         # Execute the query using the cursor and pass the values as a tuple
-            cursor.execute(insert_query, (UID,'ADMIN',  'attendanceID', 'timetableID', SUBJ, Email,Password, TeacherName, DOB, Addr,EXP))
+            cursor.execute(insert_query, (UID,'ADMIN',  'attendanceID', 'timetableID', SUBJ, Email,Password, TeacherName, DOB, Addr,PNo,EXP))
             conn.commit()
             print('success')
             return render_template('AdminAddTeacher.html' ,success=True)

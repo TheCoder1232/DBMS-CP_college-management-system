@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connect to the SQLite database (or create it if it doesn't exist)
-conn = sqlite3.connect('./instance/ERP-.db')
+conn = sqlite3.connect('./instance/ERP.db')
 
 # Create a cursor object to interact with the database
 cursor = conn.cursor()
@@ -13,6 +13,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS ADMIN (
                     studentID TEXT,
                     email TEXT NOT NULL,
                     password TEXT NOT NULL,
+                    phone TEXT NOT NULL,
                     name TEXT NOT NULL,
                     dob TEXT NOT NULL,
                     address TEXT NOT NULL,
@@ -32,6 +33,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS TEACHER (
                     name TEXT NOT NULL,
                     dob TEXT NOT NULL,
                     address TEXT NOT NULL,
+                    phone TEXT NOT NULL,
                     yearsExp TEXT NOT NULL,
                     FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
@@ -40,7 +42,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS TEACHER (
                     FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
                 )''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS STUDENT (
-                    studentID TEXT PRIMARY KEY,
+                    studentID TEXT PRIMARY KEY NOT NULL,
                     timetableID TEXT,
                     attendanceID TEXT,
                     subCode TEXT,
@@ -52,6 +54,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS STUDENT (
                     rollNo TEXT NOT NULL,
                     dob TEXT NOT NULL,
                     address TEXT NOT NULL,
+                    phone TEXT NOT NULL,
                     FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID),
                     FOREIGN KEY (attendanceID) REFERENCES ATTENDANCE (attendanceID),
@@ -59,7 +62,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS STUDENT (
                     FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
                 )''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS TIMETABLE (
-                    timetableID TEXT PRIMARY KEY,
+                    timetableID TEXT PRIMARY KEY NOT NULL,
                     teacherID TEXT,
                     studentID TEXT,
                     subCode TEXT NOT NULL,
@@ -69,7 +72,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS TIMETABLE (
                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
                 )''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS ATTENDANCE (
-                    attendanceID TEXT PRIMARY KEY,
+                    attendanceID TEXT PRIMARY KEY NOT NULL,
                     teacherID TEXT,
                     studentID TEXT,
                     rollNo TEXT NOT NULL,
@@ -79,7 +82,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS ATTENDANCE (
                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
                 )''')
 cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
-                    subCode TEXT PRIMARY KEY,
+                    subCode TEXT PRIMARY KEY NOT NULL,
                     teacherID TEXT,
                     studentID TEXT,
                     date TEXT NOT NULL,
@@ -104,9 +107,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
 
 # Commit the changes to the database
 
-# cursor.execute('''INSERT INTO ADMIN (adminID, teacherID, studentID, email, password, name, dob, address)
-#                VALUES ('ADMIN', NULL, NULL, 'admin@gmail.com', 'admin', 'ADMIN!', '2004-05-17', 'PUNE, MAHARASHTRA')''')
-cursor.execute('''  delete from teacher where studentID='student1' ''')
+# cursor.execute('''INSERT INTO ADMIN 
+#                VALUES ('ADMIN', NULL, NULL, 'admin@gmail.com','admin', '9322857001', 'ADMIN!', '2004-05-17', 'PUNE,MAHARASHTRA')''')
+# cursor.execute('select * from ADMIN')
+# print('success')
 conn.commit()
 
 
