@@ -171,6 +171,7 @@ def TeacherHomePage():
 
 @app.route("/TeacherAttendancePage")
 def TeacherAttendancePage():
+    
     return render_template('TeacherAttendancePage.html')
 
 
