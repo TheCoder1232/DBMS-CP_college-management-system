@@ -177,10 +177,16 @@ def TeacherAttendancePage():
 @app.route("/TeacherTimeTablePage")
 def TeacherTimeTablePage():
     return render_template('TeacherTimeTablePage.html')
+
+
 #Student Functions
 @app.route("/StudentHomePage")
 def StudentHomePage():
     return render_template("StudentHomePage.html",result=session.get('loginInfo'))
+
+@app.route("/StudentTimeTablePage")
+def StudentTimeTablePage():
+    return render_template('StudentTimeTablePage.html')
 
 @app.route("/StudentAttendancePage")
 def StudentAttendancePage():

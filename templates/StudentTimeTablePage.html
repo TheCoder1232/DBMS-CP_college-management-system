@@ -1,0 +1,113 @@
+{% extends 'StudentBase.html' %}
+
+{% block title %}StudentTimeTablePage{% endblock %}
+
+{% block BODY %}
+<style>
+    #button_StudentTimeTable{
+        background-color: black ;
+        color: #fff;
+    }
+</style>
+
+<div class="TimeTableBox" style="padding-top:1%; margin-left:1% ;margin-right: 1%;">
+<!-- Create this div to make the table -->
+    <div class=" TimeTableBar">
+        <span class="TimeTableDayBar">
+            <button class="TimeTableDay">MON</button>
+        </span>
+
+        <span class="TimeTableDayBar">
+            <button class="TimeTableDay">TUE</button>
+        </span>
+        
+        <span class="TimeTableDayBar">
+            <button class="TimeTableDay">WED</button>
+        </span>
+        
+        <span class="TimeTableDayBar"> 
+            <button class="TimeTableDay">THU</button>
+        </span>
+        
+        <span class="TimeTableDayBar">
+            <button class="TimeTableDay">FRI</button>
+        </span>
+         <!-- For the days -->
+
+
+    </div>
+
+    <div style="background-color: #fff; height: 100%; padding: 0.001% 3% 3% 3%"> 
+            <!-- For the Time table cards -->
+            <div class="TimeTableCards">
+                <div class="TimeTableTime">
+                    <div class="TimeTableTimeContent">
+                        11:00 am
+                        12:00 pm
+                    </div>
+                </div>
+                <div class="TimeTableSubject">
+                    <div class="TimeTableSubjectContent">
+                        Database Management System
+                    </div>
+                </div>
+            </div>
+            <div class="TimeTableCards">
+                <div class="TimeTableTime">
+                    <div class="TimeTableTimeContent">
+                        12:00 pm
+                        1:00 pm
+                    </div>
+                </div>
+                <div class="TimeTableSubject">
+                    <div class="TimeTableSubjectContent">
+                        Data Science
+                    </div>
+                </div>
+            </div>
+            <div class="TimeTableCards">
+                <div class="TimeTableTime">
+                    <div class="TimeTableTimeContent">
+                        2:00 am
+                        3:00 pm
+                    </div>
+                </div>
+                <div class="TimeTableSubject">
+                    <div class="TimeTableSubjectContent">
+                       Principles of Programming Language
+                    </div>
+                </div>
+            </div>
+            <div class="TimeTableCards">
+                <div class="TimeTableTime">
+                    <div class="TimeTableTimeContent">
+                        3:00 am
+                        4:00 pm
+                    </div>
+                </div>
+                <div class="TimeTableSubject">
+                    <div class="TimeTableSubjectContent">
+                       OOPs
+                    </div>
+                </div>
+            </div>
+            <div class="TimeTableCards">
+                <div class="TimeTableTime">
+                    <div class="TimeTableTimeContent">
+                        3:00 am
+                        4:00 pm
+                    </div>
+                </div>
+                <div class="TimeTableSubject">
+                    <div class="TimeTableSubjectContent">
+                       OOPs
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+</div>
+
+
+{%endblock%}
