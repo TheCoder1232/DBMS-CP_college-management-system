@@ -7,89 +7,110 @@ conn = sqlite3.connect('./instance/ERP.db')
 cursor = conn.cursor()
 
 # Create a table
-cursor.execute('''CREATE TABLE IF NOT EXISTS ADMIN (
-                    adminID TEXT PRIMARY KEY NOT NULL,
-                    teacherID TEXT,
-                    studentID TEXT,
-                    email TEXT NOT NULL,
-                    password TEXT NOT NULL,
-                    phone TEXT NOT NULL,
-                    name TEXT NOT NULL,
-                    dob TEXT NOT NULL,
-                    address TEXT NOT NULL,
-                    FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-                    FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
-                )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS ADMIN (
+#                     adminID TEXT PRIMARY KEY NOT NULL,
+#                     teacherID TEXT,
+#                     studentID TEXT,
+#                     email TEXT NOT NULL,
+#                     password TEXT NOT NULL,
+#                     phone TEXT NOT NULL,
+#                     name TEXT NOT NULL,
+#                     dob TEXT NOT NULL,
+#                     address TEXT NOT NULL,
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
+#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
+#                 )''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS TEACHER (
-                    teacherID TEXT PRIMARY KEY NOT NULL,
-                    adminID TEXT,
-                    studentID TEXT,
-                    attendanceID TEXT,
-                    timetableID TEXT,
-                    subCode TEXT,
-                    email TEXT NOT NULL,
-                    password TEXT NOT NULL,
-                    name TEXT NOT NULL,
-                    dob TEXT NOT NULL,
-                    address TEXT NOT NULL,
-                    phone TEXT NOT NULL,
-                    yearsExp TEXT NOT NULL,
-                    FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
-                    FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-                    FOREIGN KEY (attendanceID) REFERENCES ATTENDANCE (attendanceID),
-                    FOREIGN KEY (timetableID) REFERENCES TIMETABLE (timetableID),
-                    FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
-                )''')
-cursor.execute('''CREATE TABLE IF NOT EXISTS STUDENT (
-                    studentID TEXT PRIMARY KEY NOT NULL,
-                    timetableID TEXT,
-                    attendanceID TEXT,
-                    subCode TEXT,
-                    adminID TEXT,
-                    teacherID TEXT,
-                    email TEXT NOT NULL,
-                    password TEXT NOT NULL,
-                    name TEXT NOT NULL,
-                    rollNo TEXT NOT NULL,
-                    dob TEXT NOT NULL,
-                    address TEXT NOT NULL,
-                    phone TEXT NOT NULL,
-                    FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
-                    FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID),
-                    FOREIGN KEY (attendanceID) REFERENCES ATTENDANCE (attendanceID),
-                    FOREIGN KEY (timetableID) REFERENCES TIMETABLE (timetableID),
-                    FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
-                )''')
-cursor.execute('''CREATE TABLE IF NOT EXISTS TIMETABLE (
-                    timetableID TEXT PRIMARY KEY NOT NULL,
-                    teacherID TEXT,
-                    studentID TEXT,
-                    subCode TEXT NOT NULL,
-                    day TEXT NOT NULL,
-                    time TEXT NOT NULL,
-                    FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-                    FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
-                )''')
-cursor.execute('''CREATE TABLE IF NOT EXISTS ATTENDANCE (
-                    attendanceID TEXT PRIMARY KEY NOT NULL,
-                    teacherID TEXT,
-                    studentID TEXT,
-                    rollNo TEXT NOT NULL,
-                    subCode TEXT NOT NULL,
-                    present TEXT NOT NULL,
-                    FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-                    FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
-                )''')
-cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
-                    subCode TEXT PRIMARY KEY NOT NULL,
-                    teacherID TEXT,
-                    studentID TEXT,
-                    date TEXT NOT NULL,
-                    marks TEXT NOT NULL,
-                    FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-                    FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
-                )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS TEACHER (
+#                     teacherID TEXT PRIMARY KEY NOT NULL,
+#                     adminID TEXT,
+#                     studentID TEXT,
+#                     attendanceID TEXT,
+#                     timetableID TEXT,
+#                     subCode TEXT,
+#                     email TEXT NOT NULL,
+#                     password TEXT NOT NULL,
+#                     name TEXT NOT NULL,
+#                     dob TEXT NOT NULL,
+#                     address TEXT NOT NULL,
+#                     phone TEXT NOT NULL,
+#                     yearsExp TEXT NOT NULL,
+#                     FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
+#                     FOREIGN KEY (attendanceID) REFERENCES ATTENDANCE (attendanceID),
+#                     FOREIGN KEY (timetableID) REFERENCES TIMETABLE (timetableID),
+#                     FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
+#                 )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS STUDENT (
+#                     studentID TEXT PRIMARY KEY NOT NULL,
+#                     timetableID TEXT,
+#                     attendanceID TEXT,
+#                     subCode TEXT,
+#                     adminID TEXT,
+#                     teacherID TEXT,
+#                     email TEXT NOT NULL,
+#                     password TEXT NOT NULL,
+#                     name TEXT NOT NULL,
+#                     rollNo TEXT NOT NULL,
+#                     dob TEXT NOT NULL,
+#                     address TEXT NOT NULL,
+#                     phone TEXT NOT NULL,
+#                     FOREIGN KEY (adminID) REFERENCES ADMIN (adminID),
+#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID),
+#                     FOREIGN KEY (attendanceID) REFERENCES ATTENDANCE (attendanceID),
+#                     FOREIGN KEY (timetableID) REFERENCES TIMETABLE (timetableID),
+#                     FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
+#                 )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS TIMETABLE (
+#                     timetableID TEXT PRIMARY KEY NOT NULL,
+#                     teacherID TEXT,
+#                     studentID TEXT,
+#                     subCode TEXT NOT NULL,
+#                     day TEXT NOT NULL,
+#                     time TEXT NOT NULL,
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
+#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
+#                 )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS ATTENDANCE (
+#                     attendanceID TEXT PRIMARY KEY NOT NULL,
+#                     teacherID TEXT,
+#                     studentID TEXT,
+#                     rollNo TEXT NOT NULL,
+#                     subCode TEXT NOT NULL,
+#                     present TEXT NOT NULL,
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
+#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
+#                 )''')
+# cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
+#                     subCode TEXT PRIMARY KEY NOT NULL,
+#                     teacherID TEXT,
+#                     studentID TEXT,
+#                     date TEXT NOT NULL,
+#                     marks TEXT NOT NULL,
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
+#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
+#                 )''')
+
+################################################################################
+
+
+# Create the "ATTENDANCE" table with the specified columns
+# cursor.execute("""
+# CREATE TABLE ATTENDANCE (
+#     studentID INTEGER PRIMARY KEY,
+#     DBMS TEXT,
+#     IOT TEXT,
+#     OOP TEXT,
+#     DSA TEXT,
+#     DS TEXT,
+#     POPL TEXT
+# )
+# """)
+cursor.execute("""
+INSERT INTO ATTENDANCE VALUES(12211371, "9/10", "4/6", "6/7", "6/10", "9/12", "2/10")
+""")
+
+
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (
 #                     email TEXT PRIMARY KEY,
 #                     password TEXT NOT NULL,

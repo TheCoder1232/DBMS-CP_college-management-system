@@ -190,8 +190,29 @@ def StudentTimeTablePage():
 
 @app.route("/StudentAttendancePage")
 def StudentAttendancePage():
-    return render_template("StudentAttendancePage.html")
+    cursor.execute('select * from ATTENDANCE where studentID=?', (session.get('loginInfo')[0],))
+    result=cursor.fetchone()
+    print(result)
+    att = {}
+    for index, data in enumerate(result):
+        if index==1:
+            att["DBMS"] = cvtData(data)
+        elif index==2:
+            att["IOT"] = cvtData(data)
+        elif index==3:
+            att["OOP"] = cvtData(data)
+        elif index==4:
+            att["DSA"] = cvtData(data)
+        elif index==5:
+            att["DS"] = cvtData(data)
+        elif index==6:
+            att["POPL"] = cvtData(data)
+    return render_template("StudentAttendancePage.html", att=att)
 
+def cvtData(data):
+    lst = data.split("/")
+    percent = (int(lst[0])/int(lst[1]))*100
+    return round(percent, 2)
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
