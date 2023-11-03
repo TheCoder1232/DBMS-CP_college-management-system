@@ -14,21 +14,25 @@ def homepage():
     if request.method=="POST":
         email = request.form["login_email"]
         password = request.form["login_password"]
+       
 
         cursor.execute("SELECT * FROM ADMIN WHERE email=? AND password=?", (email, password))
         result = cursor.fetchone()
+        session['loginInfo']=result
         if result is not None:
-            return render_template("AdminHomePage.html")
+            return render_template("AdminHomePage.html",result=session.get('loginInfo'))
         
         cursor.execute("SELECT * FROM STUDENT WHERE email=? AND password=?", (email, password))
         result = cursor.fetchone()
+        session['loginInfo']=result
         if result is not None:
-            return render_template("StudentHomePage.html")
+            return render_template("StudentHomePage.html",result=session.get('loginInfo'))
         
         cursor.execute("SELECT * FROM TEACHER WHERE email=? AND password=?", (email, password))
         result = cursor.fetchone()
+        session['loginInfo']=result
         if result is not None:
-            return render_template("TeacherHomePage.html")
+            return render_template("TeacherHomePage.html",result=session.get('loginInfo'))
     
         else:
             return render_template("login_page.html", exist=False)
@@ -39,8 +43,8 @@ def homepage():
 #Admin Functions
 @app.route("/AdminHomePage")
 def AdminHomePage():
-
-    return render_template("AdminHomePage.html")
+    
+    return render_template("AdminHomePage.html",result=session.get('loginInfo'))
 
 
 @app.route("/AdminAddStudent", methods=['GET', 'POST'])
@@ -67,6 +71,7 @@ def AdminAddStudent():
             return render_template('AdminAddStudent.html' ,success=False)
     else:
         return render_template('AdminAddStudent.html')
+
 
 @app.route("/AdminDeleteStudent" ,methods=['POST','GET'])
 
@@ -162,13 +167,20 @@ def AdminDeleteTeacher():
 #Teacher Functions 
 @app.route("/TeacherHomePage")
 def TeacherHomePage():
-    return render_template('TeacherHomePage.html')
+    return render_template('TeacherHomePage.html',result=session.get('loginInfo'))
+
+@app.route("/TeacherAttendancePage")
+def TeacherAttendancePage():
+    return render_template('TeacherAttendancePage.html')
 
 
+@app.route("/TeacherTimeTablePage")
+def TeacherTimeTablePage():
+    return render_template('TeacherTimeTablePage.html')
 #Student Functions
 @app.route("/StudentHomePage")
 def StudentHomePage():
-    return render_template("StudentHomePage.html")
+    return render_template("StudentHomePage.html",result=session.get('loginInfo'))
 
 @app.route("/StudentAttendancePage")
 def StudentAttendancePage():

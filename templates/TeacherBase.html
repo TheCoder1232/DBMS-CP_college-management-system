@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/StudentAttendance.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Teacher.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminStudent.css') }}">
 
 
 
@@ -38,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{url_for('TeacherHomePage')}}">
+                    <a href="{{url_for('TeacherAttendancePage')}}">
                         <button class="button type1" id="button_TeacherAttendance">
                             <span class="btn-txt">ATTENDANCE</span>
                         </button>
@@ -46,8 +48,8 @@
                     </li>
                     
                     <li>
-                        <a href="{{url_for('TeacherHomePage')}}">
-                            <button class="button type1" id="button_addTeachers">
+                        <a href="{{url_for('TeacherTimeTablePage')}}">
+                            <button class="button type1" id="button_TeacherTimeTable">
                                 <span class="btn-txt">TIME TABLE</span>
                             </button>
                             </a>
@@ -65,7 +67,7 @@
                 </ul>
             </div>
             <div>
-                <div class="MainBar" style="display: flex; justify-content: space-between;">
+                <div class="MainBar" style="display: flex; justify-content: space-between; position: fixed;">
                     <div id="CollegeName">
                         Vishwakarma Institute of Technology
                     </div>
