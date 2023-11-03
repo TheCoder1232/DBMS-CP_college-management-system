@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/teacher.css') }}">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/TimeTable.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminStudent.css') }}">
 
 
 
-    <title>{%block title%} {%endblock%}TeacherBase </title>
+    <title>{%block title%} {%endblock%} </title>
 </head>
 <body>
     
@@ -59,7 +60,7 @@
                         <a href="{{url_for('TeacherHomePage')}}">
 
                             <button class="button type1" id="button_subject">
-                                <span class="btn-txt">RESULT</span>
+                                <span class="btn-txt">EXAMS</span>
                             </button>
                         </a>
                       

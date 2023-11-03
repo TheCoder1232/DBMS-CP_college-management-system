@@ -169,10 +169,19 @@ def AdminDeleteTeacher():
 def TeacherHomePage():
     return render_template('TeacherHomePage.html',result=session.get('loginInfo'))
 
-@app.route("/TeacherAttendancePage")
+@app.route("/TeacherAttendancePage", methods=['POST','GET'])
 def TeacherAttendancePage():
-    
-    return render_template('TeacherAttendancePage.html')
+    if request.method=='GET':
+        selectedClass = request.args.get('selectedClass')
+        print(selectedClass)
+        #apply sql query to get all students of that classes use for in html to loop all students
+        return render_template('TeacherAttendancePage.html')
+    elif request.method=='POST':
+        #once done selecting submit 
+        print('SUBMIT')
+        return render_template('TeacherAttendancePage.html')
+    else:
+        return render_template('TeacherAttendancePage.html')
 
 
 @app.route("/TeacherTimeTablePage")
