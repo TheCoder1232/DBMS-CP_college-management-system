@@ -196,6 +196,20 @@ def StudentHomePage():
 
 @app.route("/StudentTimeTablePage")
 def StudentTimeTablePage():
+    if request.method=='GET':
+        day=request.args.get('DAYS')
+        if day=='MON':
+            print('1')
+        elif day=='TUE':
+            print('2')
+        elif day=='WED':
+            print('3')
+        elif day=='THU':
+            print('4')
+        elif day=='FRI':
+            print('5')
+        
+        return render_template('StudentTimeTablePage.html')
     return render_template('StudentTimeTablePage.html')
 
 @app.route("/StudentAttendancePage")

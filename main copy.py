@@ -106,9 +106,9 @@ cursor = conn.cursor()
 #     POPL TEXT
 # )
 # """)
-cursor.execute("""
-INSERT INTO ATTENDANCE VALUES(12211371, "9/10", "4/6", "6/7", "6/10", "9/12", "2/10")
-""")
+# cursor.execute("""
+# INSERT INTO ATTENDANCE VALUES(12211371, "9/10", "4/6", "6/7", "6/10", "9/12", "2/10")
+#  """)
 
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (
@@ -132,8 +132,9 @@ INSERT INTO ATTENDANCE VALUES(12211371, "9/10", "4/6", "6/7", "6/10", "9/12", "2
 #                VALUES ('ADMIN', NULL, NULL, 'admin@gmail.com','admin', '9322857001', 'ADMIN!', '2004-05-17', 'PUNE,MAHARASHTRA')''')
 # cursor.execute('select * from ADMIN')
 # print('success')
+# Execute the query to retrieve table names
+# Close the database connection when done
 conn.commit()
-
 
 
 # Query the database
