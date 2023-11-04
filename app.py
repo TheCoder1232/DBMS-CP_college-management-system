@@ -186,7 +186,22 @@ def TeacherAttendancePage():
 
 @app.route("/TeacherTimeTablePage")
 def TeacherTimeTablePage():
+    if request.method=='GET':
+        day=request.args.get('DAYS')
+        if day=='MON':
+            print('1')
+        elif day=='TUE':
+            print('2')
+        elif day=='WED':
+            print('3')
+        elif day=='THU':
+            print('4')
+        elif day=='FRI':
+            print('5')
+        
+        return render_template('TeacherTimeTablePage.html')
     return render_template('TeacherTimeTablePage.html')
+    
 
 
 #Student Functions
