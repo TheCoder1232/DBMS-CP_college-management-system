@@ -1,17 +1,14 @@
-{% extends 'TeacherBase.html' %}
-
-{% block title %}TeacherAttendancePage{% endblock %}
-
+{% extends 'TeacherBase.html' %} {% block title %}TeacherExamsPage{% endblock %}
 {% block BODY %}
 <style>
-    #button_TeacherAttendance{
-        background-color: black ;
+    #button_TeacherExamsPage {
+        background-color: black;
         color: #fff;
     }
 </style>
 <div>
     <div style="display: flex;" >
-    <form action="/TeacherAttendancePage" method="get">
+    <form action="/TeacherExamsPage" method="get">
         <div class="TeacherPage">
 
             <label for="selectClass" style="cursor: pointer;">Select Class:</label>
@@ -30,13 +27,14 @@
     </div>
 </div>
 <div style="padding: 1%; background-color: white; margin: 1%; height: 100%; border: 1px black solid;">
-    <form action="/TeacherAttendancePage" method="post">
+    <form action="/TeacherExamsPage" method="post">
         <table class="students">
             <tr> 
                 <th>NAME</th>
                 <th>STUDENT_ID</th>
-                <th>PRESENT</th>
+                <th>MARKS</th>
             </tr>
+
             <tr>
                 <td>
                     siddhant
@@ -44,16 +42,16 @@
                 <td>
                     12211378
                 </td>
-                <td style="width: 20%;">
-                    <div class="checkbox-wrapper-34" >
-                        <input class='tgl tgl-ios' id='toggle-34' type='checkbox'>
-                        <label class='tgl-btn' for='toggle-34'></label>
-                    </div>
+                <td style="width: 20%; ;">
+                    
+                        <input type="text" class="input1" style="width: 20%; height: 2vh;" >
+                    
+                    
                 </td>
             </tr>
-        </table>
-        <input type="submit" value="SUBMIT" style="padding: 1% 2% 1% 2%; font-size: medium;" class="button-8">
 
+        </table>
+        <input type="submit" value="SUBMIT" style="padding: 1% 2% 1% 2%; font-size: medium; margin-top: 2%;" class="button-8">
     </form>
     </div>
     

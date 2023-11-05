@@ -162,6 +162,10 @@ def AdminDeleteTeacher():
         return render_template('AdminDeleteTeacher.html', exists='nothing')
     else:
         return render_template('AdminDeleteTeacher.html',exists='nothing')
+    
+@app.route("/AdminGiveTimeTable")
+def AdminGiveTimeTable():
+    return render_template("AdminGiveTimeTable.html")
 
 
 #Teacher Functions 
@@ -183,7 +187,6 @@ def TeacherAttendancePage():
     else:
         return render_template('TeacherAttendancePage.html')
 
-
 @app.route("/TeacherTimeTablePage")
 def TeacherTimeTablePage():
     if request.method=='GET':
@@ -202,6 +205,21 @@ def TeacherTimeTablePage():
         return render_template('TeacherTimeTablePage.html')
     return render_template('TeacherTimeTablePage.html')
     
+@app.route("/TeacherExamsPage", methods=['POST','GET'] )
+def TeacherExamsPage():
+    if request.method=='GET':
+        selectedClass = request.args.get('selectedClass')
+        print(selectedClass)
+        #apply sql query to get all students of that classes use for in html to loop all students
+        return render_template('TeacherExamsPage.html')
+    elif request.method=='POST':
+        #once done selecting submit 
+        print('SUBMIT')
+        return render_template('TeacherExamsPage.html')
+    else:
+        return render_template('TeacherExamsPage.html')
+    
+
 
 
 #Student Functions
@@ -252,6 +270,10 @@ def cvtData(data):
     lst = data.split("/")
     percent = (int(lst[0])/int(lst[1]))*100
     return round(percent, 2)
+
+@app.route("/StudentResultPage")
+def StudentResultPage():
+    return render_template("StudentResultPage.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
