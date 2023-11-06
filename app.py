@@ -177,11 +177,12 @@ def TeacherHomePage():
 def TeacherAttendancePage():
     if request.method=='GET':
         selectedClass = request.args.get('selectedClass')
+        cursor.execute('delete from TEACHER where teacherID=?',(uid,))
+        conn.commit()
         print(selectedClass)
-        #apply sql query to get all students of that classes use for in html to loop all students
+
         return render_template('TeacherAttendancePage.html')
     elif request.method=='POST':
-        #once done selecting submit 
         print('SUBMIT')
         return render_template('TeacherAttendancePage.html')
     else:
@@ -195,7 +196,7 @@ def TeacherTimeTablePage():
         # print(teacherID)
         cursor.execute('select * from TIMETABLE where teacherID=? AND day=?', (teacherID, day,))
         result=cursor.fetchall()
-        print(procTimeTable(result, student=False))
+        # print(procTimeTable(result, student=False))
         return render_template('TeacherTimeTablePage.html', ttable=procTimeTable(result, student=False))
     return render_template('TeacherTimeTablePage.html')
     
