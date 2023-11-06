@@ -191,23 +191,17 @@ def TeacherAttendancePage():
 def TeacherTimeTablePage():
     if request.method=='GET':
         day=request.args.get('DAYS')
-        if day=='MON':
-            print('1')
-        elif day=='TUE':
-            print('2')
-        elif day=='WED':
-            print('3')
-        elif day=='THU':
-            print('4')
-        elif day=='FRI':
-            print('5')
-        
-        return render_template('TeacherTimeTablePage.html')
+        teacherID = session.get('loginInfo')[0]
+        # print(teacherID)
+        cursor.execute('select * from TIMETABLE where teacherID=? AND day=?', (teacherID, day,))
+        result=cursor.fetchall()
+        print(procTimeTable(result, student=False))
+        return render_template('TeacherTimeTablePage.html', ttable=procTimeTable(result, student=False))
     return render_template('TeacherTimeTablePage.html')
     
 @app.route("/TeacherExamsPage", methods=['POST','GET'] )
 def TeacherExamsPage():
-    if request.method=='GET':
+    if request.method=='GET':   
         selectedClass = request.args.get('selectedClass')
         print(selectedClass)
         #apply sql query to get all students of that classes use for in html to loop all students
@@ -218,9 +212,6 @@ def TeacherExamsPage():
         return render_template('TeacherExamsPage.html')
     else:
         return render_template('TeacherExamsPage.html')
-    
-
-
 
 #Student Functions
 @app.route("/StudentHomePage")
@@ -231,10 +222,11 @@ def StudentHomePage():
 def StudentTimeTablePage():
     if request.method=='GET':
         day=request.args.get('DAYS')
-        cls = "CS"
+        cls = session.get('loginInfo')[13]
+        print(cls)
         cursor.execute('select * from TIMETABLE where class=? AND day=?', (cls, day,))
         result=cursor.fetchall()
-        print(result)
+        # print(result)
         if result is not None:
             return render_template('StudentTimeTablePage.html',  ttable=procTimeTable(result))
     return render_template('StudentTimeTablePage.html')
@@ -265,11 +257,14 @@ def cvtData(data):
     percent = (int(lst[0])/int(lst[1]))*100
     return round(percent, 2)
 
-def procTimeTable(dataset):
+def procTimeTable(dataset, student=True):
     finalList = []
     for data in dataset:
         dct = {}
-        dct["sub"] = data[3]
+        if student:
+            dct["sub"] = data[3]
+        else:
+            dct["class"] = data[2]
         lst = data[5].split("-")
         stime = ""
         etime = ""
@@ -296,7 +291,6 @@ def procTimeTable(dataset):
         dct["end"] = etime  
         finalList.append(dct)
     return finalList
-
 
 @app.route("/StudentResultPage")
 def StudentResultPage():
