@@ -96,10 +96,8 @@ cursor = conn.cursor()
 #     POPL TEXT
 # )
 # """)
-cursor.execute("""
- INSERT INTO TIMETABLE VALUES("NULL", "12211370", "CS","OOP", "MON", "15:00-16:00")
-""")
 
+cursor.execute("UPDATE STUDENT SET class = 'CS' WHERE name = 'Aditya'")
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (
 #                     email TEXT PRIMARY KEY,
