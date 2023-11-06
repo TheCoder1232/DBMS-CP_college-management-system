@@ -2,13 +2,51 @@
 {% block BODY %}
 <style>
     #button_GiveTimeTable {
-        background-color: black;
+        background-color: #17252a;
         color: #fff;
     }
-</style>
+    </style>
+    <form action="/AdminGiveTimeTable" method="post">
+<div style="padding-top:0.1% ;">
 
-Write CODE for alloting teacher timetable.
-<div>
-    
+    <div style="background: linear-gradient(180deg, #2B7A78 0%, rgba(23, 37, 42, 0.90) 99.96%, rgba(23, 37, 42, 0.90) 99.97%, rgba(23, 37, 42, 0.85) 99.98%, rgba(23, 37, 42, 0.63) 99.99%, rgba(23, 37, 42, 0.00) 100%);
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width: 70vw; margin: 5%; margin-top: 3%; height: 10vh; ">
+    <input class="givetimetablesearch" type="text" placeholder="Enter Teacher ID">
+    </div>
+
+
 </div>
+
+<div style="display: flex;">
+
+        <div class="ttallotecards">
+            <div class="ttallotecardsname">
+                DAY
+            </div>
+            <div class="ttallotecardsinput">
+                <input type="text" class="ttallotecardsinput" placeholder="Day">
+            </div>
+        </div>
+        <div class="ttallotecards">
+            <div class="ttallotecardsname">
+                TIME
+            </div>
+            <div class="ttallotecardsinput">
+                <input type="text" class="ttallotecardsinput" placeholder="Time">
+            </div>
+        </div>
+        <div class="ttallotecards">
+            <div class="ttallotecardsname">
+                CLASS
+            </div>
+            <div class="ttallotecardsinput">
+                <input type="text" class="ttallotecardsinput" placeholder="Class">
+            </div>
+        </div>
+
+</div>
+<div class="adminttsubmit" style="border: none;">
+    <button class="adminttsubmit"> SUBMIT</button>
+</div>
+</form>
 {%endblock%}

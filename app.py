@@ -163,10 +163,12 @@ def AdminDeleteTeacher():
     else:
         return render_template('AdminDeleteTeacher.html',exists='nothing')
     
-@app.route("/AdminGiveTimeTable")
+@app.route("/AdminGiveTimeTable",methods=['POST','GET'] )
 def AdminGiveTimeTable():
+    if request.method=='POST':
+        print('tt added')
+        return render_template("AdminGiveTimeTable.html")
     return render_template("AdminGiveTimeTable.html")
-
 
 #Teacher Functions 
 @app.route("/TeacherHomePage")
@@ -177,8 +179,8 @@ def TeacherHomePage():
 def TeacherAttendancePage():
     if request.method=='GET':
         selectedClass = request.args.get('selectedClass')
-        cursor.execute('delete from TEACHER where teacherID=?',(uid,))
-        conn.commit()
+        # cursor.execute('delete from TEACHER where teacherID=?',(uid,))
+        # conn.commit()
         print(selectedClass)
 
         return render_template('TeacherAttendancePage.html')
