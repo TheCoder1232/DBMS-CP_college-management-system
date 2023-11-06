@@ -92,3 +92,6 @@
       box-shadow: 0 0 0 0 #fff inset, #2b7a78 0 0 0 3px;
   }
 
+  input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
