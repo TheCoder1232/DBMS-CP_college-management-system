@@ -39,21 +39,23 @@
 
     <div style="background-color: #fff; height: 100%; padding: 0.001% 3% 3% 3%;  "> 
             <!-- For the Time table cards -->
+            {% for table in ttable %}
             <div class="TimeTableCards">
                 <div class="TimeTableTime">
                     <div class="TimeTableTimeContent">
-                        11:00 am
-                        12:00 pm
+                        {{table["start"]}}
+                        {{table["end"]}}
                     </div>
                 </div>
                 <div class="TimeTableSubject">
                     <div class="TimeTableSubjectContent">
-                        Database Management System
+                        {{table["sub"]}}
                     </div>
                 </div>
             </div>
+            {% endfor %}
             
-            <div class="TimeTableCards">
+            <!-- <div class="TimeTableCards">
                 <div class="TimeTableTime">
                     <div class="TimeTableTimeContent">
                         12:00 pm
@@ -104,7 +106,7 @@
                        OOPs
                     </div>
                 </div>
-            </div>
+            </div> -->
     </div>
 
 

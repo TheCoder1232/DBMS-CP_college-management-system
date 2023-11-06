@@ -61,24 +61,14 @@ cursor = conn.cursor()
 #                     FOREIGN KEY (timetableID) REFERENCES TIMETABLE (timetableID),
 #                     FOREIGN KEY (subCode) REFERENCES  EXAM (subCode)
 #                 )''')
+# cursor.execute('''DROP TABLE IF EXISTS TIMETABLE''')
 # cursor.execute('''CREATE TABLE IF NOT EXISTS TIMETABLE (
-#                     timetableID TEXT PRIMARY KEY NOT NULL,
+#                     timetableID TEXT,
 #                     teacherID TEXT,
-#                     studentID TEXT,
+#                     class TEXT,
 #                     subCode TEXT NOT NULL,
 #                     day TEXT NOT NULL,
 #                     time TEXT NOT NULL,
-#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
-#                 )''')
-# cursor.execute('''CREATE TABLE IF NOT EXISTS ATTENDANCE (
-#                     attendanceID TEXT PRIMARY KEY NOT NULL,
-#                     teacherID TEXT,
-#                     studentID TEXT,
-#                     rollNo TEXT NOT NULL,
-#                     subCode TEXT NOT NULL,
-#                     present TEXT NOT NULL,
-#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
 #                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
 #                 )''')
 # cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
@@ -106,9 +96,9 @@ cursor = conn.cursor()
 #     POPL TEXT
 # )
 # """)
-# cursor.execute("""
-# INSERT INTO ATTENDANCE VALUES(12211371, "9/10", "4/6", "6/7", "6/10", "9/12", "2/10")
-#  """)
+cursor.execute("""
+ INSERT INTO TIMETABLE VALUES("NULL", "12211370", "CS","OOP", "MON", "15:00-16:00")
+""")
 
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (

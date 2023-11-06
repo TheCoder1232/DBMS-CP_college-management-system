@@ -231,18 +231,12 @@ def StudentHomePage():
 def StudentTimeTablePage():
     if request.method=='GET':
         day=request.args.get('DAYS')
-        if day=='MON':
-            print('1')
-        elif day=='TUE':
-            print('2')
-        elif day=='WED':
-            print('3')
-        elif day=='THU':
-            print('4')
-        elif day=='FRI':
-            print('5')
-        
-        return render_template('StudentTimeTablePage.html')
+        cls = "CS"
+        cursor.execute('select * from TIMETABLE where class=? AND day=?', (cls, day,))
+        result=cursor.fetchall()
+        print(result)
+        if result is not None:
+            return render_template('StudentTimeTablePage.html',  ttable=procTimeTable(result))
     return render_template('StudentTimeTablePage.html')
 
 @app.route("/StudentAttendancePage")
@@ -270,6 +264,39 @@ def cvtData(data):
     lst = data.split("/")
     percent = (int(lst[0])/int(lst[1]))*100
     return round(percent, 2)
+
+def procTimeTable(dataset):
+    finalList = []
+    for data in dataset:
+        dct = {}
+        dct["sub"] = data[3]
+        lst = data[5].split("-")
+        stime = ""
+        etime = ""
+
+        if int((lst[0].split(":"))[0]) > 12:
+            stime = str(int((lst[0].split(":"))[0]) - 12)
+            stime += ":"+ (lst[0].split(":"))[1]
+            stime += " pm"
+        else:
+            stime = (lst[0].split(":"))[0]
+            stime += ":"+ (lst[0].split(":"))[1]
+            stime += " am"
+
+        if int((lst[1].split(":"))[0]) > 12:
+            etime = str(int((lst[1].split(":"))[0]) - 12)
+            etime += ":"+ (lst[1].split(":"))[1]
+            etime += " pm"
+        else:
+            etime = (lst[1].split(":"))[0]
+            etime += ":"+ (lst[1].split(":"))[1]
+            etime += " am"
+
+        dct["start"] = stime
+        dct["end"] = etime  
+        finalList.append(dct)
+    return finalList
+
 
 @app.route("/StudentResultPage")
 def StudentResultPage():
