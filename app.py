@@ -238,12 +238,33 @@ def TeacherTimeTablePage():
 def TeacherExamsPage():
     if request.method=='GET':   
         selectedClass = request.args.get('selectedClass')
-        print(selectedClass)
+        session['selectedClass']=selectedClass
+        cursor.execute(f"SELECT studentID, name FROM STUDENT WHERE CLASS=?", (selectedClass, ))
+        result=cursor.fetchall()
+        print(result)
         #apply sql query to get all students of that classes use for in html to loop all students
-        return render_template('TeacherExamsPage.html')
+        return render_template('TeacherExamsPage.html', result=result)
     elif request.method=='POST':
         #once done selecting submit 
-        print('SUBMIT')
+        selected_items = request.form.getlist('marksVal')
+        selectedClass = session.get("selectedClass")
+        cursor.execute(f"SELECT studentID, {session.get('loginInfo')[5]} FROM EXAM WHERE CLASS=?", (selectedClass,))
+        results=cursor.fetchall()
+        print(results)
+        for result in results:
+            if str(result[0]) in str(selected_items):
+                # cursor.execute(f"UPDATE EXAM SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (result[] ,result[0],))
+                # conn.commit()
+                pass
+        #     else:
+        #         s = ''
+        #         cursor.execute(f"SELECT {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE studentID=?", (result[0],))
+        #         attend=cursor.fetchone()
+        #         lst = attend[0].split("/")
+        #         lst[1] = str(int(lst[1]) + 1)
+        #         s = '/'.join(lst)
+        #         cursor.execute(f"UPDATE ATTENDANCE SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (s ,result[0],))
+        #         conn.commit()
         return render_template('TeacherExamsPage.html')
     else:
         return render_template('TeacherExamsPage.html')

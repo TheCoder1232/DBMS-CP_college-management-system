@@ -83,7 +83,7 @@ cursor = conn.cursor()
 #                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID)
 #                 )''')
 
-# cursor.execute('DROP TABLE IF EXISTS EXAM')
+cursor.execute('INSERT INTO EXAM VALUES("12210746", 78, 76, 81, 84, 89, 77, "CS")')
 
 
 ################################################################################
