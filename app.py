@@ -184,8 +184,8 @@ def TeacherHomePage():
 def TeacherAttendancePage():
     if request.method=='GET':
         selectedClass = request.args.get('selectedClass')
-        # cursor.execute('delete from TEACHER where teacherID=?',(uid,))
-        # conn.commit()
+        cursor.execute('SELECT * FROM TEACHER WHERE teacherID=?',(uid,))
+        conn.commit()
         print(selectedClass)
 
         return render_template('TeacherAttendancePage.html')
