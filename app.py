@@ -183,10 +183,12 @@ def TeacherHomePage():
 @app.route("/TeacherAttendancePage", methods=['POST','GET'])
 def TeacherAttendancePage():
     if request.method=='GET':
+        # selectedClass="CS"
         selectedClass = request.args.get('selectedClass')
-        cursor.execute('SELECT * FROM TEACHER WHERE teacherID=?',(uid,))
-        conn.commit()
         print(selectedClass)
+        cursor.execute(f"SELECT studentID, {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE CLASS=?", (selectedClass, ))
+        result=cursor.fetchall()
+        print(result)
 
         return render_template('TeacherAttendancePage.html')
     elif request.method=='POST':

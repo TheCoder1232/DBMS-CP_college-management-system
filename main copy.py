@@ -98,7 +98,7 @@ cursor = conn.cursor()
 # """)
 
 # cursor.execute("ALTER TABLE ATTENDA   NCE ADD CLASS TEXT")
-cursor.execute("INSERT INTO ATTENDANCE VALUES(12210123, '6/10', '5/6', '4/7', '9/10', '3/12', '8/10', 'IT')")
+cursor.execute("INSERT INTO ATTENDANCE VALUES(12210129, '6/10', '5/6', '4/7', '9/10', '3/12', '8/10', 'CS')")
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (
 #                     email TEXT PRIMARY KEY,
