@@ -258,23 +258,17 @@ def TeacherExamsPage():
         #once done selecting submit 
         selected_items = request.form.getlist('marksVal')
         selectedClass = session.get("selectedClass")
-        cursor.execute(f"SELECT studentID, {session.get('loginInfo')[5]} FROM EXAM WHERE CLASS=?", (selectedClass,))
+        cursor.execute(f"SELECT studentID FROM EXAM WHERE class=?", (selectedClass,))
         results=cursor.fetchall()
-        print(results)
-        for result in results:
-            if str(result[0]) in str(selected_items):
-                # cursor.execute(f"UPDATE EXAM SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (result[] ,result[0],))
-                # conn.commit()
-                pass
-        #     else:
-        #         s = ''
-        #         cursor.execute(f"SELECT {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE studentID=?", (result[0],))
-        #         attend=cursor.fetchone()
-        #         lst = attend[0].split("/")
-        #         lst[1] = str(int(lst[1]) + 1)
-        #         s = '/'.join(lst)
-        #         cursor.execute(f"UPDATE ATTENDANCE SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (s ,result[0],))
-        #         conn.commit()
+        # print(results)
+        # print(selected_items)
+        index = 0
+        for i in results:
+            j = i[0]
+            cursor.execute(f"UPDATE EXAM SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (selected_items[index], j, ))
+            conn.commit()
+            index += 1
+        
         return render_template('TeacherExamsPage.html')
     else:
         return render_template('TeacherExamsPage.html')
