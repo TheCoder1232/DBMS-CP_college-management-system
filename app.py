@@ -354,7 +354,11 @@ def procTimeTable(dataset, student=True):
 
 @app.route("/StudentResultPage")
 def StudentResultPage():
-    return render_template("StudentResultPage.html")
+    cursor.execute('select * from EXAM where studentID=?', (session.get('loginInfo')[0],))
+    result=cursor.fetchone()
+    print(result)
+    total = round((result[1]+result[2]+result[3]+result[4]+result[5]+result[6])/6, 2)
+    return render_template("StudentResultPage.html", result=result, total=total)
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
