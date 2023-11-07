@@ -57,11 +57,12 @@ def AdminAddStudent():
         DOB=request.form["DOB"]
         Email=request.form["Email"]
         Password=request.form["Password"]
+        Class=request.form["Class"]
         try:
-            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address,phone)
-               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)'''
+            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address,phone,class)
+               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)'''
         # Execute the query using the cursor and pass the values as a tuple
-            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo))
+            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo,Class))
             conn.commit()
             print('success')
             return render_template('AdminAddStudent.html' ,success=True)
