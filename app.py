@@ -43,7 +43,6 @@ def homepage():
 #Admin Functions
 @app.route("/AdminHomePage")
 def AdminHomePage():
-    
     return render_template("AdminHomePage.html",result=session.get('loginInfo'))
 
 
@@ -185,14 +184,40 @@ def TeacherAttendancePage():
     if request.method=='GET':
         # selectedClass="CS"
         selectedClass = request.args.get('selectedClass')
-        print(selectedClass)
-        cursor.execute(f"SELECT studentID, {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE CLASS=?", (selectedClass, ))
+        session['selectedClass']=selectedClass
+        # print(selectedClass)
+        cursor.execute(f"SELECT studentID, name FROM STUDENT WHERE CLASS=?", (selectedClass, ))
         result=cursor.fetchall()
-        print(result)
-
-        return render_template('TeacherAttendancePage.html')
+        # print(result)
+        return render_template('TeacherAttendancePage.html', result=result)
     elif request.method=='POST':
-        print('SUBMIT')
+        selected_items = request.form.getlist('attendanceCheck')
+        selectedClass = session.get("selectedClass")
+        cursor.execute(f"SELECT studentID, {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE CLASS=?", (selectedClass,))
+        results=cursor.fetchall()
+        print(selected_items)
+        print(results)
+        for result in results:
+            if str(result[0]) in str(selected_items):
+                s = ''
+                cursor.execute(f"SELECT {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE studentID=?", (result[0],))
+                attend=cursor.fetchone()
+                lst = attend[0].split("/")
+                lst[0] = str(int(lst[0]) + 1)
+                lst[1] = str(int(lst[1]) + 1)
+                s = '/'.join(lst)
+                cursor.execute(f"UPDATE ATTENDANCE SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (s ,result[0],))
+                conn.commit()
+            else:
+                s = ''
+                cursor.execute(f"SELECT {session.get('loginInfo')[5]} FROM ATTENDANCE WHERE studentID=?", (result[0],))
+                attend=cursor.fetchone()
+                lst = attend[0].split("/")
+                lst[1] = str(int(lst[1]) + 1)
+                s = '/'.join(lst)
+                cursor.execute(f"UPDATE ATTENDANCE SET {session.get('loginInfo')[5]}=? WHERE studentID=?", (s ,result[0],))
+                conn.commit()
+
         return render_template('TeacherAttendancePage.html')
     else:
         return render_template('TeacherAttendancePage.html')
