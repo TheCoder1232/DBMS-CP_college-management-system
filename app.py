@@ -57,11 +57,12 @@ def AdminAddStudent():
         DOB=request.form["DOB"]
         Email=request.form["Email"]
         Password=request.form["Password"]
+        Class=request.form["Class"]
         try:
-            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address,phone)
-               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)'''
+            insert_query = '''INSERT INTO STUDENT (studentID, timetableID, attendanceID, subCode, adminID, teacherID, email, password, name, rollNo, dob, address,phone,class)
+               VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)'''
         # Execute the query using the cursor and pass the values as a tuple
-            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo))
+            cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo,Class))
             conn.commit()
             print('success')
             return render_template('AdminAddStudent.html' ,success=True)
@@ -151,6 +152,7 @@ def AdminDeleteTeacher():
             uid = session.get('uid')
             if uid is not None:
                 cursor.execute('delete from TEACHER where teacherID=?',(uid,))
+                cursor.execute('delete from TIMETABLE where teacherID=?',(uid,))
                 conn.commit()
                 print(uid)
                 print("yes")
@@ -168,9 +170,17 @@ def AdminGiveTimeTable():
         selectedClass=request.form.get("selectedClass")
         selectedDay=request.form.get("selectedDay")
         ttallotetime=request.form.get("ttallotetime")
+        TeacherID=request.form["TeacherID"]
         print(selectedClass)
         print(selectedDay)
         print(ttallotetime)
+        print(TeacherID)
+        result=cursor.execute('SELECT subCode FROM TEACHER WHERE teacherID=?',(TeacherID,))
+        subj=cursor.fetchone()
+
+        print(subj[0])
+        cursor.execute('INSERT INTO TIMETABLE VALUES(NULL,?,?,?,?,?)',(TeacherID,selectedClass,subj[0],selectedDay,ttallotetime))
+        conn.commit()
         return render_template("AdminGiveTimeTable.html")
     return render_template("AdminGiveTimeTable.html")
 
