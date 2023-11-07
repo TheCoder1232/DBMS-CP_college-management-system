@@ -166,7 +166,12 @@ def AdminDeleteTeacher():
 @app.route("/AdminGiveTimeTable",methods=['POST','GET'] )
 def AdminGiveTimeTable():
     if request.method=='POST':
-        print('tt added')
+        selectedClass=request.form.get("selectedClass")
+        selectedDay=request.form.get("selectedDay")
+        ttallotetime=request.form.get("ttallotetime")
+        print(selectedClass)
+        print(selectedDay)
+        print(ttallotetime)
         return render_template("AdminGiveTimeTable.html")
     return render_template("AdminGiveTimeTable.html")
 
