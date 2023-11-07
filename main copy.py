@@ -72,14 +72,19 @@ cursor = conn.cursor()
 #                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
 #                 )''')
 # cursor.execute('''CREATE TABLE IF NOT EXISTS EXAM (
-#                     subCode TEXT PRIMARY KEY NOT NULL,
-#                     teacherID TEXT,
-#                     studentID TEXT,
-#                     date TEXT NOT NULL,
-#                     marks TEXT NOT NULL,
-#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID),
-#                     FOREIGN KEY (teacherID) REFERENCES TEACHER (teacherID)
+#                     studentID TEXT PRIMARY KEY,
+#                     DBMS INT,
+#                     IOT INT,
+#                     OOP INT,
+#                     DSA INT,
+#                     DS INT,
+#                     POPL INT,
+#                     CLASS TEXT,
+#                     FOREIGN KEY (studentID) REFERENCES STUDENT (studentID)
 #                 )''')
+
+# cursor.execute('DROP TABLE IF EXISTS EXAM')
+
 
 ################################################################################
 
@@ -98,7 +103,7 @@ cursor = conn.cursor()
 # """)
 
 # cursor.execute("ALTER TABLE ATTENDA   NCE ADD CLASS TEXT")
-cursor.execute("INSERT INTO ATTENDANCE VALUES(12210129, '6/10', '5/6', '4/7', '9/10', '3/12', '8/10', 'CS')")
+#cursor.execute("INSERT INTO ATTENDANCE VALUES(12210129, '6/10', '5/6', '4/7', '9/10', '3/12', '8/10', 'CS')")
 
 # cursor.execute('''CREATE TABLE IF NOT EXISTS USERS (
 #                     email TEXT PRIMARY KEY,
