@@ -63,6 +63,8 @@ def AdminAddStudent():
                VALUES(?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)'''
         # Execute the query using the cursor and pass the values as a tuple
             cursor.execute(insert_query, (UID,'timetableID','attendanceID','subCode','ADMIN','teacherID',Email,Password,StudentName,RNo,DOB,Addr,PNo,Class))
+            cursor.execute("INSERT INTO EXAM VALUES(?, ?, ?, ?, ?, ?, ?, ?)", (UID, 0, 0, 0, 0, 0, 0, Class,))
+            cursor.execute("INSERT INTO ATTENDANCE VALUES(?, ?, ?, ?, ?, ?, ?, ?)", (UID, "0/0", "0/0", "0/0", "0/0", "0/0", "0/0", Class,))
             conn.commit()
             print('success')
             return render_template('AdminAddStudent.html' ,success=True)
@@ -78,7 +80,6 @@ def AdminAddStudent():
 def AdminDeleteStudent():
    
     if request.method=="POST":
-
         DeleteForm=request.form.get('DeleteForm')
         if DeleteForm=='Search':
             uid=request.form["UID1"]
@@ -175,9 +176,8 @@ def AdminGiveTimeTable():
         print(selectedDay)
         print(ttallotetime)
         print(TeacherID)
-        result=cursor.execute('SELECT subCode FROM TEACHER WHERE teacherID=?',(TeacherID,))
+        cursor.execute('SELECT subCode FROM TEACHER WHERE teacherID=?',(TeacherID,))
         subj=cursor.fetchone()
-
         print(subj[0])
         cursor.execute('INSERT INTO TIMETABLE VALUES(NULL,?,?,?,?,?)',(TeacherID,selectedClass,subj[0],selectedDay,ttallotetime))
         conn.commit()
